@@ -19,28 +19,32 @@ class _PlayGameState extends State<PlayGame> {
 
   // String show = Questions[index];
 
-  // List<Questions> data = [
-  //   Questions(
-  //     question: 'Do you want to ......?',
-  //     answertrue: 'do',
-  //     answerfalse: 'get',
-  //   ),
-  //   Questions(
-  //     question: 'I am ...... TV?',
-  //     answertrue: ' going to watch',
-  //     answerfalse: 'going to play',
-  //   ),
-  //   Questions(
-  //     question: 'It is a ...... day',
-  //     answertrue: 'sunny',
-  //     answerfalse: 'shiny',
-  //   ),
-  //   Questions(
-  //     question: 'She ...... on the fence when she fell down',
-  //     answertrue: 'was sitting',
-  //     answerfalse: 'was catching',
-  //   ),
-  // ];
+  List<Questions> data = [
+    Questions(
+      question: 'Do you want to ......?',
+      answerone: 'do',
+      answertwo: 'get',
+      answertrue: 'do',
+    ),
+    Questions(
+      question: 'I am ...... TV?',
+      answerone: ' going to watch',
+      answertwo: 'going to play',
+      answertrue: 'going to watch',
+    ),
+    Questions(
+      question: 'It is a ...... day',
+      answerone: 'sunny',
+      answertwo: 'shiny',
+      answertrue: 'sunny',
+    ),
+    Questions(
+      question: 'She ...... on the fence when she fell down',
+      answerone: 'was sitting',
+      answertwo: 'was catching',
+      answertrue: 'was sitting',
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -103,13 +107,15 @@ class _PlayGameState extends State<PlayGame> {
               SizedBox(height: 10),
               Container(
                 padding: EdgeInsets.fromLTRB(8, 4, 8, 4),
-                height: 38,
+                height: 33,
+                width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   color: Colors.blue[500],
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
                   children: [
+                    box(),
                     box(),
                     box(),
                     box(),
@@ -203,7 +209,7 @@ class box extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(right: 8),
-      width: 30,
+      width: 25,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
@@ -212,14 +218,16 @@ class box extends StatelessWidget {
   }
 }
 
-// class Questions {
-//   String question;
-//   String answertrue;
-//   String answerfalse;
+class Questions {
+  String question;
+  String answerone;
+  String answertwo;
+  String answertrue;
 
-//   Questions({
-//     required this.question,
-//     required this.answertrue,
-//     required this.answerfalse,
-//   });
-// }
+  Questions({
+    required this.question,
+    required this.answertrue,
+    required this.answerone,
+    required this.answertwo,
+  });
+}
