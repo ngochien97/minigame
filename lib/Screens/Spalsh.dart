@@ -1,6 +1,7 @@
-// ignore_for_file: prefer_const_constructors, file_names
+// ignore_for_file: prefer_const_constructors, file_names, prefer_const_literals_to_create_immutables, must_be_immutable, unused_local_variable
 
 import 'package:flutter/material.dart';
+import 'package:gamemoonwalk/Modules/Title/TitleItem.dart';
 import 'package:gamemoonwalk/Screens/PlayGame.dart';
 
 void main() {
@@ -13,13 +14,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const GameMoonWalk(title: 'Game MoonWalk'),
+      home: GameMoonWalk(title: 'Game MoonWalk'),
     );
   }
 }
 
 class GameMoonWalk extends StatefulWidget {
-  const GameMoonWalk({Key? key, required this.title}) : super(key: key);
+  GameMoonWalk({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -28,6 +29,16 @@ class GameMoonWalk extends StatefulWidget {
 }
 
 class _GameMoonWalkState extends State<GameMoonWalk> {
+  List<Packet> data = [
+    Packet(
+      titleSPL: "Choices",
+      word: "120 Words",
+    ),
+    Packet(
+      titleSPL: "Activities & Events",
+      word: "120 Words,",
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,51 +55,36 @@ class _GameMoonWalkState extends State<GameMoonWalk> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.45,
-              ),
-              Text(
-                'MOONWALK',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 36,
-                  letterSpacing: 4,
-                ),
-              ),
-              SizedBox(height: 10),
-              Text(
-                'complete the sentence',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  letterSpacing: 1,
-                ),
-              ),
-              Expanded(child: Container()),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => PlayGame()),
-                  );
-                },
-                child: Container(
+              for (var item in data)
+                Container(
                   alignment: Alignment.center,
-                  width: 70,
-                  height: 70,
+                  width: 150,
+                  height: 150,
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(35),
+                    color: Colors.green[100],
+                    borderRadius: BorderRadius.circular(75),
                   ),
-                  child: Icon(
-                    Icons.navigate_next,
-                    size: 32,
+                  child: Column(
+                    children: [
+                      Text(
+                        item.titleSPL,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        '120 Word',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-              SizedBox(height: 15)
             ],
           ),
         ),
@@ -96,3 +92,8 @@ class _GameMoonWalkState extends State<GameMoonWalk> {
     );
   }
 }
+
+// Navigator.push(
+//                   context,
+//                   MaterialPageRoute(builder: (context) => PlayGame()),
+//                 );
