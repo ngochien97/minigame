@@ -76,10 +76,17 @@ class _PlayGameState extends State<PlayGame> {
       onClicked[index] = true;
     });
     if (answer == data[index].answertrue) {
+      setState(
+        () {
+          CheckColor[index] = true;
+        },
+      );
+    }else{
       setState(() {
-        CheckColor[index] = true;
+        count--;
       });
     }
+    
   }
 
   @override
@@ -131,7 +138,7 @@ class _PlayGameState extends State<PlayGame> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
-                      '3',
+                      '$count',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,

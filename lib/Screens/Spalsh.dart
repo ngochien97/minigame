@@ -31,12 +31,12 @@ class GameMoonWalk extends StatefulWidget {
 class _GameMoonWalkState extends State<GameMoonWalk> {
   List<Packet> data = [
     Packet(
-      titleSPL: "Choices",
-      word: "120 Words",
-    ),
-    Packet(
       titleSPL: "Activities & Events",
       word: "120 Words,",
+    ),
+    Packet(
+      titleSPL: "Choices",
+      word: "120 Words",
     ),
   ];
   @override
@@ -57,6 +57,7 @@ class _GameMoonWalkState extends State<GameMoonWalk> {
             children: [
               for (var item in data)
                 Container(
+                  margin: EdgeInsets.only(bottom: 40),
                   alignment: Alignment.center,
                   width: 150,
                   height: 150,
@@ -64,25 +65,34 @@ class _GameMoonWalkState extends State<GameMoonWalk> {
                     color: Colors.green[100],
                     borderRadius: BorderRadius.circular(75),
                   ),
-                  child: Column(
-                    children: [
-                      Text(
-                        item.titleSPL,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => PlayGame()),
+                      );
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          item.titleSPL,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      Text(
-                        '120 Word',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                        Text(
+                          '120 Word',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
             ],
@@ -92,8 +102,3 @@ class _GameMoonWalkState extends State<GameMoonWalk> {
     );
   }
 }
-
-// Navigator.push(
-//                   context,
-//                   MaterialPageRoute(builder: (context) => PlayGame()),
-//                 );
