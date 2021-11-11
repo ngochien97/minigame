@@ -34,8 +34,8 @@ class _PlayGameState extends State<PlayGame> {
     Questions(
       question: 'I am ...... TV?',
       answerone: '  going to play',
-      answertwo: 'going to watch',
-      answertrue: 'going to watch',
+      answertwo: 'going to \n watch',
+      answertrue: 'going to \n watch',
     ),
     Questions(
       question: 'It is a ...... day',
@@ -45,8 +45,8 @@ class _PlayGameState extends State<PlayGame> {
     ),
     Questions(
       question: 'She ...... on the fence when she fell down',
-      answerone: 'was sitting',
-      answertwo: 'was catching',
+      answerone: 'was \n sitting',
+      answertwo: 'was \n catching',
       answertrue: 'was sitting',
     ),
   ];
@@ -81,12 +81,11 @@ class _PlayGameState extends State<PlayGame> {
           CheckColor[index] = true;
         },
       );
-    }else{
+    } else {
       setState(() {
         count--;
       });
     }
-    
   }
 
   @override
