@@ -49,6 +49,18 @@ class _PlayGameState extends State<PlayGame> {
       answertwo: 'was \n catching',
       answertrue: 'was sitting',
     ),
+    Questions(
+      question: 'How ___ children do you have?',
+      answerone: 'many',
+      answertwo: 'much',
+      answertrue: 'many',
+    ),
+    Questions(
+      question: 'Who do you ___ with?',
+      answerone: 'live',
+      answertwo: 'to',
+      answertrue: 'live',
+    ),
   ];
 
   List<Widget> renderBox() {
@@ -152,10 +164,11 @@ class _PlayGameState extends State<PlayGame> {
                 height: 33,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                  color: Colors.blue[500],
+                  color: Colors.blue[300],
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ...renderBox(),
                   ],
@@ -180,15 +193,15 @@ class _PlayGameState extends State<PlayGame> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  (index >= data.length)
+                  (index >= data.length || count == 0)
                       ? Container()
                       : GestureDetector(
                           onTap: () {
                             checkRight(data[index].answerone);
                             setState(() {
                               index++;
-                              if (index == data.length) {
-                                Timer(Duration(seconds: 3), () {
+                              if (index == data.length || count == 0) {
+                                Timer(Duration(seconds: 2), () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -217,15 +230,15 @@ class _PlayGameState extends State<PlayGame> {
                             ),
                           ),
                         ),
-                  (index >= data.length)
+                  (index >= data.length || count == 0)
                       ? Container()
                       : GestureDetector(
                           onTap: () {
                             checkRight(data[index].answertwo);
                             setState(() {
                               index++;
-                              if (index == data.length) {
-                                Timer(Duration(seconds: 3), () {
+                              if (index == data.length || count == 0) {
+                                Timer(Duration(seconds: 2), () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(

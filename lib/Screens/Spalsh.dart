@@ -93,7 +93,7 @@ class _GameMoonWalkState extends State<GameMoonWalk> {
                       );
                     },
                     child: Container(
-                      margin: EdgeInsets.only(bottom: 40),
+                      margin: EdgeInsets.only(bottom: 40, top: 20),
                       alignment: Alignment.topCenter,
                       width: 150,
                       height: 150,

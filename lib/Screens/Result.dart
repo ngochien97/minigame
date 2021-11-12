@@ -21,6 +21,7 @@ class _ResultState extends State<Result> {
         title: Text('Turtle Swimming'),
       ),
       body: SingleChildScrollView(
+        // padding: EdgeInsets.only(top: 26),
         child: Column(
           children: [
             Container(
@@ -128,6 +129,22 @@ class _ResultState extends State<Result> {
                         ),
                       ],
                     ),
+                  ),
+                  SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.backpack_outlined),
+                        iconSize: 32,
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.replay_10_outlined),
+                        iconSize: 32,
+                      ),
+                    ],
                   ),
                 ],
               ),
