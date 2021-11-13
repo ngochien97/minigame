@@ -37,7 +37,7 @@ class _GameMoonWalkState extends State<GameMoonWalk> {
   @override
   void didChangeDependencies() async {
     if (_isLoading) {
-      data = await NetworkRequest().fetchPosts();
+      data = await RequestCategory().fetchPosts();
       print(data.toList().toString());
     }
     super.didChangeDependencies();
@@ -87,6 +87,7 @@ class _GameMoonWalkState extends State<GameMoonWalk> {
                               color: Colors.black,
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                           Text(

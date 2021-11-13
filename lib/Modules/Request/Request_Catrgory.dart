@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 String baseurl = 'api.myfeel.me';
 
-class NetworkRequest {
+class RequestCategory {
   Future<List<ThemeItem>> fetchPosts() async {
     final Uri uri = Uri.http(baseurl, 'Question/getListCategory');
     final List<ThemeItem> listCateParse = [];
