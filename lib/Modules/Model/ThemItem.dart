@@ -9,9 +9,9 @@ class ThemeItem {
     required this.name,
   });
 
-  factory ThemeItem.fromJson(Map<String, dynamic> json) {
+  factory ThemeItem.fromJson(Map<dynamic, dynamic> json) {
     final user = ThemeItem(
-      id: json['id'],
+      id: int.parse('${json['id']}'),
       name: json['name'],
     );
 

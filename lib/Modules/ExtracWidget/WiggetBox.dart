@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class box extends StatelessWidget {
   final bool checkColor;
   final bool onClicked;
+
   const box({Key? key, required this.checkColor, required this.onClicked})
       : super(key: key);
 

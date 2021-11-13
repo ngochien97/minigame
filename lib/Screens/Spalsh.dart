@@ -1,11 +1,10 @@
 // ignore_for_file: prefer_const_constructors, file_names, prefer_const_literals_to_create_immutables, must_be_immutable, unused_local_variable, deprecated_member_use, unnecessary_string_interpolations
 
 import 'package:flutter/material.dart';
-import 'package:gamemoonwalk/Modules/Request/Network_Request.dart';
+import 'package:gamemoonwalk/Modules/Model/ThemItem.dart';
+import 'package:gamemoonwalk/Modules/Request/Request_Catrgory.dart';
 import 'package:gamemoonwalk/Modules/Title/TitleItem.dart';
-import 'package:gamemoonwalk/Modules/model/ThemItem.dart';
 import 'package:gamemoonwalk/Screens/PlayGame.dart';
-import 'package:gamemoonwalk/Modules/Request/Network_Request.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,41 +31,18 @@ class GameMoonWalk extends StatefulWidget {
 }
 
 class _GameMoonWalkState extends State<GameMoonWalk> {
-  // List<ThemeItem> themeData = [];
+  List<ThemeItem> data = [];
+  bool _isLoading = true;
 
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   NetworkRequest.fetchPosts().then((dataFromSever) {
-  //     setState(() {
-  //       themeData = dataFromSever.cast<ThemeItem>();
-  //     });
-  //   });
-  // }
+  @override
+  void didChangeDependencies() async {
+    if (_isLoading) {
+      data = await NetworkRequest().fetchPosts();
+      print(data.toList().toString());
+    }
+    super.didChangeDependencies();
+  }
 
-  List<Packet> data = [
-    Packet(
-      titleSPL: "Activities \n & Events",
-      word: "25/25 Words,",
-    ),
-    Packet(
-      titleSPL: "Choices",
-      word: "20/20 Words",
-    ),
-    Packet(
-      titleSPL: "Communication",
-      word: "20/20 Words",
-    ),
-    Packet(
-      titleSPL: "Describing \n People",
-      word: "20/20 Words",
-    ),
-    Packet(
-      titleSPL: "Food & Drink",
-      word: "20/20 Words",
-    ),
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,7 +82,7 @@ class _GameMoonWalkState extends State<GameMoonWalk> {
                         children: [
                           Text(
                             // '${themeData[index].name}',
-                            item.titleSPL,
+                            item.name,
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 20,
@@ -114,7 +90,7 @@ class _GameMoonWalkState extends State<GameMoonWalk> {
                             ),
                           ),
                           Text(
-                            item.word,
+                            '20 word',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,

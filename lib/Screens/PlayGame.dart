@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, file_names, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, file_names, prefer_const_literals_to_create_immutables, non_constant_identifier_names
 
 import 'dart:async';
 
@@ -23,6 +23,8 @@ class _PlayGameState extends State<PlayGame> {
   int count = 3;
   List<bool> CheckColor = [];
   List<bool> onClicked = [];
+  final bool ColorAnswer = false;
+  final bool ClickAnswer = false;
 
   List<Questions> data = [
     Questions(
@@ -99,6 +101,8 @@ class _PlayGameState extends State<PlayGame> {
       });
     }
   }
+
+  void checkanswer() {}
 
   @override
   Widget build(BuildContext context) {
@@ -254,7 +258,9 @@ class _PlayGameState extends State<PlayGame> {
                             width: 100,
                             padding: EdgeInsets.only(left: 5),
                             decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: ClickAnswer
+                                  ? (ColorAnswer ? Colors.green : Colors.red)
+                                  : Colors.white,
                               borderRadius: BorderRadius.circular(50),
                             ),
                             child: Text(
