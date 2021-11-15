@@ -25,7 +25,7 @@ class RequestCategory {
         return listCateParse;
       }
     } catch (e) {
-      print('hinh nhu la code ben trai sai');
+      print('hinh nhu la code ben tren sai');
 
       throw e;
     }

@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, file_names, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:gamemoonwalk/Screens/PlayGame.dart';
+import 'package:gamemoonwalk/Screens/Splash.dart';
 
 void main() {
   runApp(const Result());
@@ -17,9 +19,9 @@ class _ResultState extends State<Result> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Turtle Swimming'),
-      ),
+      // appBar: AppBar(
+      //   title: Text('Turtle Swimming'),
+      // ),
       body: SingleChildScrollView(
         // padding: EdgeInsets.only(top: 26),
         child: Column(
@@ -135,12 +137,26 @@ class _ResultState extends State<Result> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.backpack_outlined),
+                        color: Colors.blue,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    TurtleSwimming(title: '')),
+                          );
+                        },
+                        icon: Icon(Icons.arrow_back_outlined),
                         iconSize: 32,
                       ),
                       IconButton(
-                        onPressed: () {},
+                        color: Colors.blue,
+                        onPressed: () {
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(builder: (context) => PlayGame(),
+                          // );
+                        },
                         icon: Icon(Icons.replay_10_outlined),
                         iconSize: 32,
                       ),

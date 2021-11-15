@@ -4,16 +4,14 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:gamemoonwalk/Modules/ExtracWidget/WiggetBox.dart';
+import 'package:gamemoonwalk/Modules/Model/QuestionItem.dart';
 import 'package:gamemoonwalk/Modules/Question/QuestionItem.dart';
+import 'package:gamemoonwalk/Modules/Request/Request_question.dart';
 import 'package:gamemoonwalk/Screens/Result.dart';
 
-void main() {
-  runApp(const PlayGame());
-}
-
 class PlayGame extends StatefulWidget {
-  const PlayGame({Key? key}) : super(key: key);
-
+  const PlayGame({Key? key, required this.data}) : super(key: key);
+  final List<QuestionItem> data;
   @override
   _PlayGameState createState() => _PlayGameState();
 }
@@ -26,48 +24,10 @@ class _PlayGameState extends State<PlayGame> {
   final bool ColorAnswer = false;
   final bool ClickAnswer = false;
 
-  List<Questions> data = [
-    Questions(
-      question: 'Do you want to ......?',
-      answerone: 'do',
-      answertwo: 'get',
-      answertrue: 'do',
-    ),
-    Questions(
-      question: 'I am ...... TV?',
-      answerone: '  going to play',
-      answertwo: 'going to \n watch',
-      answertrue: 'going to \n watch',
-    ),
-    Questions(
-      question: 'It is a ...... day',
-      answerone: 'shiny',
-      answertwo: 'sunny',
-      answertrue: 'sunny',
-    ),
-    Questions(
-      question: 'She ...... on the fence when she fell down',
-      answerone: 'was \n sitting',
-      answertwo: 'was \n catching',
-      answertrue: 'was sitting',
-    ),
-    Questions(
-      question: 'How ___ children do you have?',
-      answerone: 'many',
-      answertwo: 'much',
-      answertrue: 'many',
-    ),
-    Questions(
-      question: 'Who do you ___ with?',
-      answerone: 'live',
-      answertwo: 'to',
-      answertrue: 'live',
-    ),
-  ];
-
   List<Widget> renderBox() {
     List<Widget> renderListBox = [];
-    for (var i = 0; i < data.length; i++) {
+
+    for (var i = 0; i < widget.data.length; i++) {
       renderListBox.add(box(
         checkColor: CheckColor[i],
         onClicked: onClicked[i],
@@ -77,8 +37,8 @@ class _PlayGameState extends State<PlayGame> {
   }
 
   @override
-  void didChangeDependencies() {
-    for (var i = 0; i < data.length; i++) {
+  void didChangeDependencies() async {
+    for (var i = 0; i < widget.data.length; i++) {
       CheckColor.add(false);
       onClicked.add(false);
     }
@@ -89,7 +49,7 @@ class _PlayGameState extends State<PlayGame> {
     setState(() {
       onClicked[index] = true;
     });
-    if (answer == data[index].answertrue) {
+    if (answer == widget.data[index].true_answer) {
       setState(
         () {
           CheckColor[index] = true;
@@ -183,9 +143,9 @@ class _PlayGameState extends State<PlayGame> {
               ),
               Center(
                 child: Text(
-                  (index >= data.length)
-                      ? data[data.length - 1].question
-                      : data[index].question,
+                  (index >= widget.data.length)
+                      ? widget.data[widget.data.length - 1].question!
+                      : widget.data[index].question!,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
@@ -197,14 +157,14 @@ class _PlayGameState extends State<PlayGame> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  (index >= data.length || count == 0)
+                  (index >= widget.data.length || count == 0)
                       ? Container()
                       : GestureDetector(
                           onTap: () {
-                            checkRight(data[index].answerone);
+                            checkRight(widget.data[index].answer_one!);
                             setState(() {
                               index++;
-                              if (index == data.length || count == 0) {
+                              if (index == widget.data.length || count == 0) {
                                 Timer(Duration(seconds: 2), () {
                                   Navigator.push(
                                     context,
@@ -225,7 +185,8 @@ class _PlayGameState extends State<PlayGame> {
                               borderRadius: BorderRadius.circular(50),
                             ),
                             child: Text(
-                              data[index].answerone,
+                              widget.data[index].answer_one!,
+                              // item.answer_one,
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 20,
@@ -234,14 +195,14 @@ class _PlayGameState extends State<PlayGame> {
                             ),
                           ),
                         ),
-                  (index >= data.length || count == 0)
+                  (index >= widget.data.length || count == 0)
                       ? Container()
                       : GestureDetector(
                           onTap: () {
-                            checkRight(data[index].answertwo);
+                            checkRight(widget.data[index].answer_two!);
                             setState(() {
                               index++;
-                              if (index == data.length || count == 0) {
+                              if (index == widget.data.length || count == 0) {
                                 Timer(Duration(seconds: 2), () {
                                   Navigator.push(
                                     context,
@@ -264,7 +225,7 @@ class _PlayGameState extends State<PlayGame> {
                               borderRadius: BorderRadius.circular(50),
                             ),
                             child: Text(
-                              data[index].answertwo,
+                              widget.data[index].answer_two!,
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 20,
