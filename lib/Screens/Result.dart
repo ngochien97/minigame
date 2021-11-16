@@ -4,10 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:gamemoonwalk/Screens/PlayGame.dart';
 import 'package:gamemoonwalk/Screens/Splash.dart';
 
-void main() {
-  runApp(const Result());
-}
-
 class Result extends StatefulWidget {
   const Result({Key? key}) : super(key: key);
 
@@ -23,7 +19,6 @@ class _ResultState extends State<Result> {
       //   title: Text('Turtle Swimming'),
       // ),
       body: SingleChildScrollView(
-        // padding: EdgeInsets.only(top: 26),
         child: Column(
           children: [
             Container(
@@ -136,9 +131,8 @@ class _ResultState extends State<Result> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      IconButton(
-                        color: Colors.blue,
-                        onPressed: () {
+                      GestureDetector(
+                        onTap: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -146,19 +140,26 @@ class _ResultState extends State<Result> {
                                     TurtleSwimming(title: '')),
                           );
                         },
-                        icon: Icon(Icons.arrow_back_outlined),
-                        iconSize: 32,
+                        child: Container(
+                          height: 50,
+                          width: 50,
+                          child: Image.asset('lib/Asset/button-play.png'),
+                        ),
                       ),
-                      IconButton(
-                        color: Colors.blue,
-                        onPressed: () {
+                      GestureDetector(
+                        onTap: () {
                           // Navigator.push(
                           //   context,
-                          //   MaterialPageRoute(builder: (context) => PlayGame(),
+                          //   MaterialPageRoute(
+                          //     builder: (context) => PlayGame(data: []),
+                          //   ),
                           // );
                         },
-                        icon: Icon(Icons.replay_10_outlined),
-                        iconSize: 32,
+                        child: Container(
+                          height: 50,
+                          width: 50,
+                          child: Image.asset('lib/Asset/button-replay.png'),
+                        ),
                       ),
                     ],
                   ),

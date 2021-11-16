@@ -5,7 +5,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:gamemoonwalk/Modules/ExtracWidget/WiggetBox.dart';
 import 'package:gamemoonwalk/Modules/Model/QuestionItem.dart';
-import 'package:gamemoonwalk/Modules/Question/QuestionItem.dart';
 import 'package:gamemoonwalk/Modules/Request/Request_question.dart';
 import 'package:gamemoonwalk/Screens/Result.dart';
 
@@ -23,6 +22,8 @@ class _PlayGameState extends State<PlayGame> {
   List<bool> onClicked = [];
   final bool ColorAnswer = false;
   final bool ClickAnswer = false;
+  List<bool> chooseTrue = [];
+  int chooseTrueNum = 0;
 
   List<Widget> renderBox() {
     List<Widget> renderListBox = [];
@@ -53,6 +54,7 @@ class _PlayGameState extends State<PlayGame> {
       setState(
         () {
           CheckColor[index] = true;
+          chooseTrueNum++;
         },
       );
     } else {
@@ -72,7 +74,7 @@ class _PlayGameState extends State<PlayGame> {
         width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('lib/Asset/moon.jpg'),
+            image: AssetImage('lib/Asset/bg.jpg'),
             fit: BoxFit.cover,
           ),
         ),
@@ -91,13 +93,13 @@ class _PlayGameState extends State<PlayGame> {
                   width: 30,
                   height: 30,
                   decoration: BoxDecoration(
-                    color: Colors.black,
+                    color: Colors.grey,
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Icon(
                     Icons.arrow_back_ios,
                     size: 16,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                 ),
               ),
@@ -139,7 +141,7 @@ class _PlayGameState extends State<PlayGame> {
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.25,
+                height: MediaQuery.of(context).size.height * 0.20,
               ),
               Center(
                 child: Text(
@@ -236,6 +238,7 @@ class _PlayGameState extends State<PlayGame> {
                         ),
                 ],
               ),
+              SizedBox(height: 50)
             ],
           ),
         ),

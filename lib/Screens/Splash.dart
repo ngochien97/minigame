@@ -108,13 +108,13 @@ class _TurtleSwimmingState extends State<TurtleSwimming> {
           height: MediaQuery.of(context).size.height,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('lib/Asset/moon.jpg'),
+              image: AssetImage('lib/Asset/bg.jpg'),
               fit: BoxFit.cover,
             ),
           ),
           child: _isLoading
               ? Center(
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(color: Colors.white),
                 )
               : SingleChildScrollView(
                   child: Column(
